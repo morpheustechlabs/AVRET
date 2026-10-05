@@ -79,6 +79,12 @@ AVRET is an independent commercial utility. It is not affiliated with, endorsed 
 
 Microchip, AVR, Atmel, and related marks are the property of their respective owners.
 
+## Author / Lead Design Engineer
+
+**Brian Ignomirello (IEEE)**
+
+Morpheus Innovation Labs LLC
+
 ## Publisher
 
 **Morpheus Innovation Labs LLC**

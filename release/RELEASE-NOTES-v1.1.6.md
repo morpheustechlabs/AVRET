@@ -24,3 +24,8 @@ AVRET-1.1.6-b26081203.dmg.sha256
 ## Source Code
 
 AVRET source code is proprietary and is not included in this repository.
+
+## Author / Lead Design Engineer
+
+**Brian Ignomirello (IEEE)**
+
