@@ -223,7 +223,8 @@ def remove_old_release_payloads(release_dir: Path, keep_names):
         elif p.is_file() and (
             p.name.endswith(".dmg")
             or p.name.endswith(".dmg.sha256")
-            or p.name in ("AVRET-latest.sha256",)
+            or p.name == "AVRET-latest.sha256"
+            or (p.name.startswith("RELEASE-NOTES-v") and p.name.endswith(".md"))
         ):
             p.unlink()
 
@@ -233,47 +234,26 @@ def stage_release(build: Build, actual_sha: str, blob_strategy: str):
     release_dir = root / "release"
     release_dir.mkdir(exist_ok=True)
 
-    immutable_dmg = release_dir / build.dmg_name
-    immutable_sha = release_dir / build.sha_name
-    latest_link = release_dir / "AVRET-latest.dmg"
-    latest_sha_link = release_dir / "AVRET-latest.sha256"
+    latest_dmg = release_dir / "AVRET-latest.dmg"
+    latest_sha = release_dir / "AVRET-latest.sha256"
     notes = release_dir / f"RELEASE-NOTES-v{build.version}.md"
 
     keep = {
-        immutable_dmg.name,
-        immutable_sha.name,
-        latest_link.name,
-        latest_sha_link.name,
+        latest_dmg.name,
+        latest_sha.name,
         notes.name,
     }
     remove_old_release_payloads(release_dir, keep)
 
     print("\n=== STAGE PUBLIC RELEASE ===")
-    print(f"Copying actual DMG into Git repo:\n  {immutable_dmg}")
+    print(f"Publishing current DMG as:\n  {latest_dmg}")
 
-    # A previous release helper may have left the immutable DMG path as a
-    # symlink to the source DMG. shutil.copy2() follows that symlink and then
-    # raises SameFileError because source and destination resolve to the same
-    # inode. Remove any existing file/symlink first, then copy a real file.
-    if immutable_dmg.exists() or immutable_dmg.is_symlink():
-        immutable_dmg.unlink()
+    for p in (latest_dmg, latest_sha):
+        if p.exists() or p.is_symlink():
+            p.unlink()
 
-    shutil.copy2(build.dmg, immutable_dmg)
-
-    if immutable_sha.exists() or immutable_sha.is_symlink():
-        immutable_sha.unlink()
-    immutable_sha.write_text(f"{actual_sha}  {immutable_dmg.name}\n")
-
-    # GitHub preserves symlinks as symlinks; they do not behave like a
-    # downloadable "latest" alias in the web UI. Publish real duplicate files
-    # instead. Git de-duplicates identical blobs internally, so the immutable
-    # DMG and AVRET-latest.dmg reference the same Git object.
-    for latest in (latest_link, latest_sha_link):
-        if latest.exists() or latest.is_symlink():
-            latest.unlink()
-
-    shutil.copy2(immutable_dmg, latest_link)
-    latest_sha_link.write_text(f"{actual_sha}  AVRET-latest.dmg\n")
+    shutil.copy2(build.dmg, latest_dmg)
+    latest_sha.write_text(f"{actual_sha}  AVRET-latest.dmg\n")
 
     notes.write_text(
         f"# AVRET {build.version} — macOS Universal\n\n"
@@ -283,10 +263,8 @@ def stage_release(build: Build, actual_sha: str, blob_strategy: str):
         "This is the current public production release of AVRET®.\n\n"
         "The production DMG is Apple Developer ID signed and notarized.\n\n"
         "## Download\n\n"
-        f"- `{immutable_dmg.name}`\n"
-        f"- `{immutable_sha.name}`\n"
-        "- `AVRET-latest.dmg` is a byte-identical convenience copy of the current release.\n"
-        "- `AVRET-latest.sha256` verifies `AVRET-latest.dmg`.\n\n"
+        "- `AVRET-latest.dmg` — current production installer\n"
+        "- `AVRET-latest.sha256` — SHA-256 checksum for the installer\n\n"
         "## SHA-256\n\n"
         f"```text\n{actual_sha}\n```\n\n"
         "## Author / Lead Design Engineer\n\n"
@@ -300,7 +278,7 @@ def stage_release(build: Build, actual_sha: str, blob_strategy: str):
         run(["git", "lfs", "track", "release/*.dmg"], cwd=root)
         print("Git LFS tracking enabled for release/*.dmg")
 
-    return immutable_dmg, immutable_sha, latest_link, latest_sha_link, notes
+    return latest_dmg, latest_sha, notes
 
 
 def update_readme(build: Build, actual_sha: str):
@@ -359,7 +337,7 @@ def commit_and_push(build: Build):
     run(["git", "push", "-u", "origin", "main"], cwd=root)
 
 
-def github_release(build: Build, immutable_dmg: Path, immutable_sha: Path, notes: Path):
+def github_release(build: Build, latest_dmg: Path, latest_sha: Path, notes: Path):
     gh = shutil.which("gh")
     if not gh:
         raise SystemExit(
@@ -376,11 +354,8 @@ def github_release(build: Build, immutable_dmg: Path, immutable_sha: Path, notes
     ).returncode == 0
 
     if exists:
-        latest_dmg = immutable_dmg.parent / "AVRET-latest.dmg"
-        latest_sha = immutable_dmg.parent / "AVRET-latest.sha256"
         run([
             gh, "release", "upload", build.tag,
-            str(immutable_dmg), str(immutable_sha),
             str(latest_dmg), str(latest_sha),
             "--clobber", "--repo", GITHUB_REPO
         ])
@@ -391,11 +366,8 @@ def github_release(build: Build, immutable_dmg: Path, immutable_sha: Path, notes
             "--repo", GITHUB_REPO
         ])
     else:
-        latest_dmg = immutable_dmg.parent / "AVRET-latest.dmg"
-        latest_sha = immutable_dmg.parent / "AVRET-latest.sha256"
         run([
             gh, "release", "create", build.tag,
-            str(immutable_dmg), str(immutable_sha),
             str(latest_dmg), str(latest_sha),
             "--title", build.title,
             "--notes-file", str(notes),
@@ -453,12 +425,12 @@ def main():
         return
 
     if choice == "4":
-        immutable_dmg, immutable_sha, _, _, notes = staged
-        github_release(build, immutable_dmg, immutable_sha, notes)
+        latest_dmg, latest_sha, notes = staged
+        github_release(build, latest_dmg, latest_sha, notes)
         print("\nDONE.")
         print(f"Repository: https://github.com/{GITHUB_REPO}")
         print(f"Tag:        {build.tag}")
-        print(f"Latest:     release/AVRET-latest.dmg (byte-identical copy of {immutable_dmg.name})")
+        print("Latest:     release/AVRET-latest.dmg")
         return
 
     raise SystemExit("Invalid menu selection.")

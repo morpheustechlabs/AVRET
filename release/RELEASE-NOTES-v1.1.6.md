@@ -10,10 +10,8 @@ The production DMG is Apple Developer ID signed and notarized.
 
 ## Download
 
-- `AVRET-1.1.6-b26081203.dmg`
-- `AVRET-1.1.6-b26081203.dmg.sha256`
-- `AVRET-latest.dmg` is a byte-identical convenience copy of the current release.
-- `AVRET-latest.sha256` verifies `AVRET-latest.dmg`.
+- `AVRET-latest.dmg` — current production installer
+- `AVRET-latest.sha256` — SHA-256 checksum for the installer
 
 ## SHA-256
 
