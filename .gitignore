@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+._*
+
+# Secrets/signing
+.env
+.env.*
+*.pem
+*.p12
+*.cer
+*.key
+*.mobileprovision
+
+# Source/build material never public
+*.py
+*.pkgproj
+*.xcodeproj
+*.xcworkspace
+DerivedData/
+build/
+dist*/
+*.app/
+AVRET.app/
+
+# Release payloads are GitHub Release assets, not committed files
+release/*.dmg
+release/*.sha256
+release/*.pkg
+release/*.zip
