@@ -264,13 +264,16 @@ def stage_release(build: Build, actual_sha: str, blob_strategy: str):
         immutable_sha.unlink()
     immutable_sha.write_text(f"{actual_sha}  {immutable_dmg.name}\n")
 
-    # Relative links survive clones and GitHub displays them correctly.
-    for link in (latest_link, latest_sha_link):
-        if link.exists() or link.is_symlink():
-            link.unlink()
+    # GitHub preserves symlinks as symlinks; they do not behave like a
+    # downloadable "latest" alias in the web UI. Publish real duplicate files
+    # instead. Git de-duplicates identical blobs internally, so the immutable
+    # DMG and AVRET-latest.dmg reference the same Git object.
+    for latest in (latest_link, latest_sha_link):
+        if latest.exists() or latest.is_symlink():
+            latest.unlink()
 
-    latest_link.symlink_to(immutable_dmg.name)
-    latest_sha_link.symlink_to(immutable_sha.name)
+    shutil.copy2(immutable_dmg, latest_link)
+    latest_sha_link.write_text(f"{actual_sha}  AVRET-latest.dmg\n")
 
     notes.write_text(
         f"# AVRET {build.version} — macOS Universal\n\n"
@@ -282,8 +285,8 @@ def stage_release(build: Build, actual_sha: str, blob_strategy: str):
         "## Download\n\n"
         f"- `{immutable_dmg.name}`\n"
         f"- `{immutable_sha.name}`\n"
-        "- `AVRET-latest.dmg` points to the current immutable release.\n"
-        "- `AVRET-latest.sha256` points to the current checksum.\n\n"
+        "- `AVRET-latest.dmg` is a byte-identical convenience copy of the current release.\n"
+        "- `AVRET-latest.sha256` verifies `AVRET-latest.dmg`.\n\n"
         "## SHA-256\n\n"
         f"```text\n{actual_sha}\n```\n\n"
         "## Author / Lead Design Engineer\n\n"
@@ -373,9 +376,12 @@ def github_release(build: Build, immutable_dmg: Path, immutable_sha: Path, notes
     ).returncode == 0
 
     if exists:
+        latest_dmg = immutable_dmg.parent / "AVRET-latest.dmg"
+        latest_sha = immutable_dmg.parent / "AVRET-latest.sha256"
         run([
             gh, "release", "upload", build.tag,
             str(immutable_dmg), str(immutable_sha),
+            str(latest_dmg), str(latest_sha),
             "--clobber", "--repo", GITHUB_REPO
         ])
         run([
@@ -385,9 +391,12 @@ def github_release(build: Build, immutable_dmg: Path, immutable_sha: Path, notes
             "--repo", GITHUB_REPO
         ])
     else:
+        latest_dmg = immutable_dmg.parent / "AVRET-latest.dmg"
+        latest_sha = immutable_dmg.parent / "AVRET-latest.sha256"
         run([
             gh, "release", "create", build.tag,
             str(immutable_dmg), str(immutable_sha),
+            str(latest_dmg), str(latest_sha),
             "--title", build.title,
             "--notes-file", str(notes),
             "--latest",
@@ -449,7 +458,7 @@ def main():
         print("\nDONE.")
         print(f"Repository: https://github.com/{GITHUB_REPO}")
         print(f"Tag:        {build.tag}")
-        print(f"Latest:     release/AVRET-latest.dmg -> {immutable_dmg.name}")
+        print(f"Latest:     release/AVRET-latest.dmg (byte-identical copy of {immutable_dmg.name})")
         return
 
     raise SystemExit("Invalid menu selection.")

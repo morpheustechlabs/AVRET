@@ -12,8 +12,8 @@ The production DMG is Apple Developer ID signed and notarized.
 
 - `AVRET-1.1.6-b26081203.dmg`
 - `AVRET-1.1.6-b26081203.dmg.sha256`
-- `AVRET-latest.dmg` points to the current immutable release.
-- `AVRET-latest.sha256` points to the current checksum.
+- `AVRET-latest.dmg` is a byte-identical convenience copy of the current release.
+- `AVRET-latest.sha256` verifies `AVRET-latest.dmg`.
 
 ## SHA-256
 
