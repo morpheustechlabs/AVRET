@@ -12,7 +12,6 @@
 *.mobileprovision
 
 # Source/build material never public
-*.py
 *.pkgproj
 *.xcodeproj
 *.xcworkspace
@@ -22,8 +21,10 @@ dist*/
 *.app/
 AVRET.app/
 
-# Release payloads are GitHub Release assets, not committed files
-release/*.dmg
-release/*.sha256
-release/*.pkg
-release/*.zip
+# AVRET application source files are not part of this public distribution repo.
+# Keep Python ignored generally, but explicitly allow the public release automation.
+*.py
+!scripts/avret_git_release.py
+
+# Release payloads ARE intentionally committed in release/
+# so the current public DMG is visible in the GitHub tree.
