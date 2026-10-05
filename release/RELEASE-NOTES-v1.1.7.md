@@ -1,6 +1,6 @@
-# AVRET 1.1.6 — macOS Universal
+# AVRET 1.1.7 — macOS Universal
 
-**Build:** 26081203  
+**Build:** 2610051921  
 **Platform:** macOS  
 **Architecture:** Universal — Apple silicon and Intel  
 
@@ -16,7 +16,7 @@ The production DMG is Apple Developer ID signed and notarized.
 ## SHA-256
 
 ```text
-711660764310b8c3bc530fbe7ac556005ca5d14cd11e48ee56fa58745bbb95fc
+caa26dc68f5be08d755c09cec5630113950773280e62360fe4afb165e0b9ca96
 ```
 
 ## Author / Lead Design Engineer

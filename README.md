@@ -10,8 +10,8 @@
 
 ## Current Release
 
-**Version:** 1.1.6  
-**Build:** 26081203  
+**Version:** 1.1.7  
+**Build:** 2610051921  
 **Platform:** macOS 13.5+  
 **Architecture:** Universal — Apple silicon and Intel  
 **Status:** Apple Developer ID signed and notarized
@@ -26,7 +26,7 @@ AVRET-1.1.6-b26081203.dmg.sha256
 SHA-256:
 
 ```text
-711660764310b8c3bc530fbe7ac556005ca5d14cd11e48ee56fa58745bbb95fc
+caa26dc68f5be08d755c09cec5630113950773280e62360fe4afb165e0b9ca96
 ```
 
 ## Install
@@ -47,7 +47,7 @@ shasum -a 256 "AVRET-1.1.6-b26081203.dmg"
 Expected:
 
 ```text
-711660764310b8c3bc530fbe7ac556005ca5d14cd11e48ee56fa58745bbb95fc
+caa26dc68f5be08d755c09cec5630113950773280e62360fe4afb165e0b9ca96
 ```
 
 Or:
