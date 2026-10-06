@@ -2,7 +2,7 @@
 
 AVRET® — Advanced Research, Editing and Testing is a native macOS engineering workbench for Microchip AVR devices.
 
-> This repository is for public binary distribution only. AVRET application source code is proprietary and is not published here.
+> This repository is for public AVRET binary distribution.
 
 ## Current Release
 
@@ -11,7 +11,7 @@ Build: 2610051921
 Platform: macOS 13.5+
 Architecture: Universal — Apple silicon and Intel
 Status: Apple Developer ID signed and notarized
-Direct download: https://avret.morpheusinnovation.com/downloads/AVRET-1.1.7-b2610051921.dmg?avret_release=3633db3921e20e3c
+Direct download: https://avret.morpheusinnovation.com/downloads/AVRET-1.1.7-b2610051921.dmg?avret_release=7f272d8061388d24
 
 ### Release assets
 
@@ -22,7 +22,7 @@ Direct download: https://avret.morpheusinnovation.com/downloads/AVRET-1.1.7-b261
 SHA-256:
 
 ```text
-3633db3921e20e3c9debc09d22833ab520c8295a23f218ce8052c0be322d479d
+7f272d8061388d245c4e94b5e9746611cf694413292a5073524f595451ceb7ad
 ```
 
 ## Install
@@ -43,7 +43,7 @@ shasum -a 256 "AVRET-1.1.7-b2610051921.dmg"
 Expected:
 
 ```text
-3633db3921e20e3c9debc09d22833ab520c8295a23f218ce8052c0be322d479d
+7f272d8061388d245c4e94b5e9746611cf694413292a5073524f595451ceb7ad
 ```
 
 ## What AVRET Provides
@@ -58,10 +58,6 @@ Expected:
 - Package-aware pin visualization
 - Device Pack integration
 - Engineering calculators and bitwise utilities
-
-## Source Code
-
-No AVRET application source code is published in this repository.
 
 ## Microchip Notice
 

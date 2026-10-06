@@ -6,6 +6,10 @@
 
 This is the current public production release of AVRET®.
 
+## Release Notes
+
+- Fixed App Colormodes, Trail and Purchase wiring bug
+
 ## Download
 
 The installer is attached to this GitHub Release and is also available from the AVRET download service.
@@ -16,13 +20,9 @@ The installer is attached to this GitHub Release and is also available from the 
 ## SHA-256
 
 ```text
-3633db3921e20e3c9debc09d22833ab520c8295a23f218ce8052c0be322d479d
+7f272d8061388d245c4e94b5e9746611cf694413292a5073524f595451ceb7ad
 ```
 
 ## Author / Lead Design Engineer
 
 **Brian Ignomirello (IEEE)**
-
-## Source Code
-
-AVRET source code is proprietary and is not included in this repository.
