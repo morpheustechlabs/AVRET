@@ -1,38 +1,34 @@
 # AVRET®
 
-<p align="center">
-  <img src="assets/welcomeAvret.png" alt="AVRET Platform" width="900">
-</p>
+AVRET® — Advanced Research, Editing and Testing is a native macOS engineering workbench for Microchip AVR devices.
 
-**AVRET® — Advanced Research, Editing and Testing** is a native macOS engineering workbench for Microchip AVR devices.
-
-> **This repository is for public binary distribution only. AVRET application source code is proprietary and is not published here.**
+> This repository is for public binary distribution only. AVRET application source code is proprietary and is not published here.
 
 ## Current Release
 
-**Version:** 1.1.7  
-**Build:** 2610051921  
-**Platform:** macOS 13.5+  
-**Architecture:** Universal — Apple silicon and Intel  
-**Status:** Apple Developer ID signed and notarized
+Version: 1.1.7
+Build: 2610051921
+Platform: macOS 13.5+
+Architecture: Universal — Apple silicon and Intel
+Status: Apple Developer ID signed and notarized
+Direct download: https://avret.morpheusinnovation.com/downloads/AVRET-1.1.7-b2610051921.dmg?avret_release=3633db3921e20e3c
 
 ### Release assets
 
-```text
-AVRET-1.1.6-b26081203.dmg
-AVRET-1.1.6-b26081203.dmg.sha256
-```
+- `AVRET-1.1.7-b2610051921.dmg` — GitHub Release asset / AVRET download service
+- `AVRET-latest.sha256` — checksum for the current installer
+- `RELEASE-NOTES-v1.1.7.md` — current release notes
 
 SHA-256:
 
 ```text
-8500daf250e3b17489697042c078a875b0099fbf50c9b681a0bd1a4cff5061b0
+3633db3921e20e3c9debc09d22833ab520c8295a23f218ce8052c0be322d479d
 ```
 
 ## Install
 
 1. Open the latest GitHub Release.
-2. Download `AVRET-1.1.6-b26081203.dmg`.
+2. Download `AVRET-1.1.7-b2610051921.dmg`.
 3. Optionally verify the checksum.
 4. Open the DMG.
 5. Drag AVRET to Applications.
@@ -40,20 +36,14 @@ SHA-256:
 
 ## Verify
 
-```bash
-shasum -a 256 "AVRET-1.1.6-b26081203.dmg"
+```sh
+shasum -a 256 "AVRET-1.1.7-b2610051921.dmg"
 ```
 
 Expected:
 
 ```text
-8500daf250e3b17489697042c078a875b0099fbf50c9b681a0bd1a4cff5061b0
-```
-
-Or:
-
-```bash
-shasum -a 256 -c "AVRET-1.1.6-b26081203.dmg.sha256"
+3633db3921e20e3c9debc09d22833ab520c8295a23f218ce8052c0be322d479d
 ```
 
 ## What AVRET Provides
@@ -81,12 +71,12 @@ Microchip, AVR, Atmel, and related marks are the property of their respective ow
 
 ## Author / Lead Design Engineer
 
-**Brian Ignomirello (IEEE)**
+Brian Ignomirello (IEEE)
 
 Morpheus Innovation Labs LLC
 
 ## Publisher
 
-**Morpheus Innovation Labs LLC**
+Morpheus Innovation Labs LLC
 
 Copyright © 2026 Morpheus Innovation Labs LLC. All rights reserved.
