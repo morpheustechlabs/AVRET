@@ -28,3 +28,6 @@ AVRET.app/
 
 # Release payloads ARE intentionally committed in release/
 # so the current public DMG is visible in the GitHub tree.
+
+# Installer binaries are release assets, not Git blobs.
+release/*.dmg
