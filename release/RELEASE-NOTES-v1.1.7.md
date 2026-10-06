@@ -8,7 +8,7 @@ This is the current public production release of AVRET®.
 
 ## Release Notes
 
-- Fixed App Colormodes, Trail and Purchase wiring bug
+- Fixed Colormodes, Trail and Purchjase wiring bug
 
 ## Download
 
@@ -20,7 +20,7 @@ The installer is attached to this GitHub Release and is also available from the 
 ## SHA-256
 
 ```text
-7f272d8061388d245c4e94b5e9746611cf694413292a5073524f595451ceb7ad
+271f5227331f9bef8f28de1c509de06128f28f89649699c4125b4e4027378db1
 ```
 
 ## Author / Lead Design Engineer
