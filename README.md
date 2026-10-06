@@ -11,7 +11,7 @@ Build: 2610051921
 Platform: macOS 13.5+
 Architecture: Universal — Apple silicon and Intel
 Status: Apple Developer ID signed and notarized
-Direct download: https://avret.morpheusinnovation.com/downloads/AVRET-1.1.7-b2610051921.dmg?avret_release=271f5227331f9bef
+Direct download: https://avret.morpheusinnovation.com/downloads/AVRET-1.1.7-b2610051921.dmg?avret_release=8997df82f7880c82
 
 ### Release assets
 
@@ -22,7 +22,7 @@ Direct download: https://avret.morpheusinnovation.com/downloads/AVRET-1.1.7-b261
 SHA-256:
 
 ```text
-271f5227331f9bef8f28de1c509de06128f28f89649699c4125b4e4027378db1
+8997df82f7880c825b69e67aaa0ef7920a67e08411d62e079a9a551dfe4fb487
 ```
 
 ## Install
@@ -43,7 +43,7 @@ shasum -a 256 "AVRET-1.1.7-b2610051921.dmg"
 Expected:
 
 ```text
-271f5227331f9bef8f28de1c509de06128f28f89649699c4125b4e4027378db1
+8997df82f7880c825b69e67aaa0ef7920a67e08411d62e079a9a551dfe4fb487
 ```
 
 ## What AVRET Provides
