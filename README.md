@@ -6,29 +6,29 @@ AVRET® — Advanced Research, Editing and Testing is a native macOS engineering
 
 ## Current Release
 
-Version: 1.1.7
-Build: 2610051921
+Version: 1.1.8
+Build: 2610061221
 Platform: macOS 13.5+
 Architecture: Universal — Apple silicon and Intel
 Status: Apple Developer ID signed and notarized
-Direct download: https://avret.morpheusinnovation.com/downloads/AVRET-1.1.7-b2610051921.dmg?avret_release=e39791baa85292d2
+Direct download: https://avret.morpheusinnovation.com/downloads/AVRET-1.1.8-b2610061221.dmg?avret_release=5eaccd63d49636bf
 
 ### Release assets
 
-- `AVRET-1.1.7-b2610051921.dmg` — GitHub Release asset / AVRET download service
+- `AVRET-1.1.8-b2610061221.dmg` — GitHub Release asset / AVRET download service
 - `AVRET-latest.sha256` — checksum for the current installer
-- `RELEASE-NOTES-v1.1.7.md` — current release notes
+- `RELEASE-NOTES-v1.1.8.md` — current release notes
 
 SHA-256:
 
 ```text
-e39791baa85292d2bc9f8dd609419cf581a15647ad7ce38f74404a6a01ce2062
+5eaccd63d49636bf30995ef0a656e75aa570434e86dac81a41e2192cfad1cd1c
 ```
 
 ## Install
 
 1. Open the latest GitHub Release.
-2. Download `AVRET-1.1.7-b2610051921.dmg`.
+2. Download `AVRET-1.1.8-b2610061221.dmg`.
 3. Optionally verify the checksum.
 4. Open the DMG.
 5. Drag AVRET to Applications.
@@ -37,13 +37,13 @@ e39791baa85292d2bc9f8dd609419cf581a15647ad7ce38f74404a6a01ce2062
 ## Verify
 
 ```sh
-shasum -a 256 "AVRET-1.1.7-b2610051921.dmg"
+shasum -a 256 "AVRET-1.1.8-b2610061221.dmg"
 ```
 
 Expected:
 
 ```text
-e39791baa85292d2bc9f8dd609419cf581a15647ad7ce38f74404a6a01ce2062
+5eaccd63d49636bf30995ef0a656e75aa570434e86dac81a41e2192cfad1cd1c
 ```
 
 ## What AVRET Provides

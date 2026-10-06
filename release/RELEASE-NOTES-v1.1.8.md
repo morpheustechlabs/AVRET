@@ -1,6 +1,6 @@
-# AVRET 1.1.7 — macOS Universal
+# AVRET 1.1.8 — macOS Universal
 
-**Build:** 2610051921  
+**Build:** 2610061221  
 **Platform:** macOS  
 **Architecture:** Universal — Apple silicon and Intel  
 
@@ -10,13 +10,13 @@ This is the current public production release of AVRET®.
 
 The installer is attached to this GitHub Release and is also available from the AVRET download service.
 
-- `AVRET-1.1.7-b2610051921.dmg` — signed and notarized installer
-- `AVRET-1.1.7-b2610051921.sha256` — SHA-256 checksum
+- `AVRET-1.1.8-b2610061221.dmg` — signed and notarized installer
+- `AVRET-1.1.8-b2610061221.sha256` — SHA-256 checksum
 
 ## SHA-256
 
 ```text
-e39791baa85292d2bc9f8dd609419cf581a15647ad7ce38f74404a6a01ce2062
+5eaccd63d49636bf30995ef0a656e75aa570434e86dac81a41e2192cfad1cd1c
 ```
 
 ## Author / Lead Design Engineer
